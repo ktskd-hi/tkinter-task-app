@@ -1,0 +1,27 @@
+{
+    "tasks": [],
+    "categories": [
+        {
+            "id": 1,
+            "title": "カテゴリ１",
+            "color": "#7EAE1A"
+        },
+        {
+            "id": 2,
+            "title": "カテゴリ２",
+            "color": "#2A9E62"
+        },
+        {
+            "id": 3,
+            "title": "カテゴリ３",
+            "color": "#5F4AC1"
+        },
+        {
+            "id": 4,
+            "title": "カテゴリ４",
+            "color": "#AA6D0A"
+        }
+    ],
+    "goallines": [],
+    "projecttitle": "プロジェクトタイトル"
+}
