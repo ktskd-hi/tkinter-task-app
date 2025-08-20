@@ -7,6 +7,9 @@ import matplotlib.pyplot as plt
 from task import GoalLineList,GoalLine
 from pydantic import ValidationError
 
+import sys
+import os
+
 
 from PIL import Image, ImageTk
 
@@ -323,7 +326,8 @@ class GoallineFunctions():
         self.new_goalline = {}
         self.goallineUnitSlaves = {}
 
-        self.edit_icon = tk.PhotoImage(file="./imgs/edit_icon_3.png")
+        edit_icon_3_path = os.path.join(self.controller.base_path, 'imgs', 'edit_icon_3.png')
+        self.edit_icon = tk.PhotoImage(file=edit_icon_3_path)
 
         self.styles = Styles()
 
@@ -698,13 +702,19 @@ class GoallineFunctions():
         self.setNewGoalline(len(self.goalline_list.goallines)+1)
         print("goalline-store")
         self.controller.addGoalline(self.new_goalline)
-        self.controller.view.visualizeFrame.viewGoallineListFrame.updateFrame()
+        # self.controller.view.visualizeFrame.viewGoallineListFrame.updateFrame()
+        # visualizeFrame = self.controller.visualizeFrame
+        # visualizeFrame.styles.bind_to_all_children(visualizeFrame.visualizeCanvas, "<MouseWheel>", visualizeFrame.on_mousewheel_visualize)
+
 
     def editGoalline(self, id, *_):
         # ボタンに紐づけているidが来る
         self.setNewGoalline(id)
         self.controller.editGoalline(self.new_goalline, id)
-        self.controller.view.visualizeFrame.viewGoallineListFrame.updateFrame()
+        # self.controller.view.visualizeFrame.viewGoallineListFrame.updateFrame()
+        # visualizeFrame = self.controller.visualizeFrame
+        # visualizeFrame.styles.bind_to_all_children(visualizeFrame.visualizeCanvas, "<MouseWheel>", visualizeFrame.on_mousewheel_visualize)
+
 
     def deleteGoalline(self, id, *_):
         def deleteGoallineExecution():
@@ -728,7 +738,8 @@ class TaskTitle():
         self.text_var = tk.StringVar()
         self.text_var.set(text)
 
-        self.edit_icon = tk.PhotoImage(file="./imgs/edit_icon_2.png")
+        edit_icon_2_path = os.path.join(self.controller.base_path, 'imgs', 'edit_icon_2.png')
+        self.edit_icon = tk.PhotoImage(file=edit_icon_2_path)
 
         self.label = tk.Label(parent, 
             textvariable=self.text_var,
@@ -813,13 +824,19 @@ class TaskTitle():
 
 
 class TaskHeader(tk.Frame):
-    def __init__(self, parent):
+    def __init__(self, parent, controller):
         super().__init__(parent, width=543, height=24, bg="#2A445A")
 
-        self.header_img_01 = tk.PhotoImage(file="./imgs/header_img_01.png")
-        self.header_img_02 = tk.PhotoImage(file="./imgs/header_img_02.png")
-        self.header_img_03 = tk.PhotoImage(file="./imgs/header_img_03.png")
-        self.header_img_04 = tk.PhotoImage(file="./imgs/header_img_04.png")
+        self.controller = controller
+
+        header_img_01_path = os.path.join(self.controller.base_path, 'imgs', 'header_img_01.png')
+        self.header_img_01 = tk.PhotoImage(file=header_img_01_path)
+        header_img_02_path = os.path.join(self.controller.base_path, 'imgs', 'header_img_02.png')
+        self.header_img_02 = tk.PhotoImage(file=header_img_02_path)
+        header_img_03_path = os.path.join(self.controller.base_path, 'imgs', 'header_img_03.png')
+        self.header_img_03 = tk.PhotoImage(file=header_img_03_path)
+        header_img_04_path = os.path.join(self.controller.base_path, 'imgs', 'header_img_04.png')
+        self.header_img_04 = tk.PhotoImage(file=header_img_04_path)
 
 
         tk.Frame(self, bg="#324F67").place(x=2, y=2, width=20, height=20)
@@ -844,7 +861,8 @@ class CategoryListFrame():
 
         self.category = category
         self.controller = controller
-        self.edit_icon = tk.PhotoImage(file="./imgs/edit_icon_2.png")
+        edit_icon_2_path = os.path.join(self.controller.base_path, 'imgs', 'edit_icon_2.png')
+        self.edit_icon = tk.PhotoImage(file=edit_icon_2_path)
 
         self.text_var = tk.StringVar()
         self.text_var.set(category.title)
@@ -1193,10 +1211,13 @@ class ViewGoallineListFrame():
             self.innerFrame.pack(after=self.visualizeFrame.visualizeGoallineFrameTitleFrame2)
         self.setFrame()
 
-        self.innerFrame.bind("<MouseWheel>", self.visualizeFrame.on_mousewheel_visualize)
-        for widget in WidgetFundtions.get_all_descendants(self.innerFrame):
-            widget.bind("<MouseWheel>", self.visualizeFrame.on_mousewheel_visualize)
-        self.visualizeFrame.styles.bind_to_all_children(self.visualizeFrame.visualizeCanvas, "<MouseWheel>", self.visualizeFrame.on_mousewheel_visualize)
+        print("updateframe")
 
+        # self.innerFrame.bind("<MouseWheel>", self.visualizeFrame.on_mousewheel_visualize)
+        # for widget in WidgetFundtions.get_all_descendants(self.innerFrame):
+        #     widget.bind("<MouseWheel>", self.visualizeFrame.on_mousewheel_visualize)
+        # self.visualizeFrame.styles.bind_to_all_children(self.visualizeFrame.visualizeCanvas, "<MouseWheel>", self.visualizeFrame.on_mousewheel_visualize)
+
+       
         
         
